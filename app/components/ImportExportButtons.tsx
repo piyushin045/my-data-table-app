@@ -18,7 +18,9 @@ export default function ImportExportButtons() {
     Papa.parse(file, {
       header: true,
       complete: (result) => {
-        dispatch(setRows(result.data));
+        // cast parsed data to any[] to satisfy the setRows typing
+        const parsed = result.data as any[];
+        dispatch(setRows(parsed));
       },
     });
   };
